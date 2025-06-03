@@ -1,0 +1,551 @@
+/* =========================================
+   * Base Styles
+   * ========================================= */
+   body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Calibri, sans-serif;
+}
+
+/* =========================================
+   * Navigation Bar
+   * ========================================= */
+#navbar {
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #343a40;
+    padding: 10px 20px;
+    color: white;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 100px;
+    margin: 0 10px;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-menu li {
+    margin: 0 15px;
+}
+
+.navbar-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar-menu a:hover {
+    color: #ddd;
+}
+
+.larger-nav-link {
+    font-size: 18px;
+    padding: 10px 15px;
+}
+
+/* =========================================
+   * Main Layout
+   * ========================================= */
+.main-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* =========================================
+   * Sidebar Styles
+   * ========================================= */
+#sidebar {
+    width: 20%;
+    background: #e0e0e0;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 1px solid #ccc;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 10;
+}
+
+#sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* =========================================
+   * Dropdown Controls
+   * ========================================= */
+.layer-group {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.dropdown-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.dropdown-btn:after {
+    content: '\25BC';
+    float: right;
+    margin-left: 10px;
+}
+
+.dropdown-btn.active:after {
+    content: '\25B2';
+}
+
+.dropdown-container {
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* =========================================
+   * Layer Controls
+   * ========================================= */
+.layer-checkbox {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.opacity-control {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.opacity-control label {
+    font-size: 14px;
+    color: #333;
+    margin-right: 5px;
+}
+
+/* Custom slider styles */
+.opacity-control input[type="range"] {
+    width: 80px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ddd;
+    height: 4px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.opacity-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #6c757d;
+    cursor: pointer;
+    border: 2px solid #343a40;
+}
+
+.opacity-control input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #6c757d;
+    cursor: pointer;
+    border: 2px solid #343a40;
+}
+
+/* =========================================
+   * Split Map Layout
+   * ========================================= */
+
+
+   #map-split-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+   #map, #compare-map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.leaflet-container {
+    transition: none !important;
+}
+
+#map-divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: col-resize;
+    z-index: 1000;
+    transition: background-color 0.2s;
+}
+
+#map-divider:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#map-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 40px;
+    background-color: white;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+/* =========================================
+   * Map Controls
+   * ========================================= */
+/* Stacking controls properly */
+.leaflet-bottom.leaflet-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.leaflet-bottom.leaflet-left .leaflet-control {
+    margin-bottom: 10px;
+    clear: both;
+}
+
+/* Country outline toggle button */
+.outline-toggle-control {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+}
+
+.outline-toggle-button {
+    display: block;
+    text-align: center;
+    padding: 5px 8px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: white;
+    text-decoration: none;
+    white-space: nowrap; /* Prevent wrapping */
+    min-width: 70px; /* Adjust width as needed */
+}
+
+.outline-toggle-button:hover {
+    background-color: #ffffff;
+}
+
+.outline-toggle-button.active {
+    background-color: #ffffff;
+    color: #0078A8;
+}
+
+/* Basemap control styles */
+.basemap-control {
+    background-color: white;
+    padding: 5px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.combined-basemap-control {
+    width: 100px;
+}
+
+.basemap-label {
+    display: block;
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333;
+}
+.basemap-select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-bottom: 10px;
+    background-color: #f8f8f8;
+}
+
+.basemap-select-group {
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   * Legend Styling
+   * ========================================= */
+.legend {
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: block;
+}
+
+.legend h4 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.legend p {
+    margin: 0 0 5px 0;
+    color: #555;
+}
+
+/* =========================================
+   * Tooltips
+   * ========================================= */
+.leaflet-tooltip {
+    background-color: white;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+}
+
+/* =========================================
+   * Layer Controls
+   * ========================================= */
+.layer-controls {
+    padding: 5px 15px;
+    margin-bottom: 10px;
+}
+
+.attribute-selector,
+.color-ramp-selector {
+    display: none;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.attribute-selector label,
+.color-ramp-selector label {
+    display: block;
+    font-size: 14px;
+    color: #495057;
+    margin-bottom: 5px;
+}
+
+.attribute-selector select,
+.color-ramp-selector select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    font-size: 14px;
+}
+
+.color-preview {
+    min-height: 20px;
+    border-radius: 3px;
+    margin-top: 5px;
+    border: 1px solid #ced4da;
+}
+
+.color-ramp-preview {
+    display: flex;
+    height: 20px;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid #ced4da;
+}
+
+/* =========================================
+   * Raster Image Rendering
+   * ========================================= */
+.crisp-image {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.smooth-image {
+    image-rendering: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Admin boundary label styles */
+.admin-label {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    font-size: 10px;
+    pointer-events: none;
+}
+
+.adm1-label {
+    color: #000;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+.adm2-label {
+    color: #333;
+    font-size: 8px;
+}
+
+/* Adapt the label size based on zoom level */
+@media (min-width: 768px) {
+    .admin-label {
+        font-size: 14px;
+    }
+    
+    .adm1-label {
+        font-size: 12px;
+    }
+    
+    .adm2-label {
+        font-size: 10px;
+    }
+}
+
+/* Combined control panel styles */
+.combined-map-control {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    padding: 0;
+    width: 200px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+.combined-control-toggle {
+    background-color: #6c757d;
+    color: white;
+    padding: 5px 10px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+    border-radius: 4px 4px 0 0;
+}
+
+.combined-control-toggle:hover {
+    background-color: #5a6268;
+}
+
+.combined-control-content {
+    padding: 8px;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.combined-map-control.minimized .combined-control-content {
+    max-height: 0;
+    padding: 0 8px;
+    overflow: hidden;
+}
+.combined-control-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.combined-control-separator {
+    height: 1px;
+    background-color: #ccc;
+    margin: 10px 0;
+}
+
+.combined-control-button {
+    padding: 6px 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.combined-control-button:hover {
+    background-color: #e6e6e6;
+}
+
+
+.combined-control-button.active {
+    background-color: #d4edda !important;
+    border-color: #c3e6cb !important;
+    font-weight: bold;
+}
+
+/* Original label toggle control styles - kept for backward compatibility */
+.label-toggle-control {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    padding: 8px;
+    min-width: 100px;
+}
+
+.label-toggle-button.active {
+    background-color: #d4edda !important;
+    border-color: #c3e6cb !important;
+    font-weight: bold;
+}
