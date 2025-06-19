@@ -6,11 +6,11 @@ import { basemaps, basemapOptions } from './basemaps.js';
  * Create label layers for administrative boundaries and combined control panel
  * @param {Object} map - Leaflet map instance
  * @param {Object} vectorLayers - Object containing vector layers
- * @param {Object} countryOutline - Country outline layer
+ * @param {Object} countryOutlines - Object containing country outline layers
  * @param {Object} compareMap - Comparison map instance
  * @returns {Object} - Object containing label layers
  */
-export function createAdminLabelLayers(map, vectorLayers, countryOutline, compareMap) {
+export function createAdminLabelLayers(map, vectorLayers, countryOutlines, compareMap) {
     // Initialize label layers container
     const labelLayers = {
         adm1: L.layerGroup(),
@@ -21,7 +21,7 @@ export function createAdminLabelLayers(map, vectorLayers, countryOutline, compar
     map.removeControl(map.zoomControl);
     
     // Create the combined control panel
-    createCombinedMapControl(map, labelLayers, countryOutline, compareMap);
+    createCombinedMapControl(map, labelLayers, countryOutlines, compareMap);
     
     return labelLayers;
 }
@@ -30,10 +30,10 @@ export function createAdminLabelLayers(map, vectorLayers, countryOutline, compar
  * Create a custom control combining all map controls
  * @param {Object} map - Leaflet map instance
  * @param {Object} labelLayers - Label layer groups
- * @param {Object} countryOutline - Country outline layer
+ * @param {Object} countryOutlines - Object containing country outline layers
  * @param {Object} compareMap - Comparison map instance
  */
-function createCombinedMapControl(map, labelLayers, countryOutline, compareMap) {
+function createCombinedMapControl(map, labelLayers, countryOutlines, compareMap) {
     const CombinedControl = L.Control.extend({
         options: { position: 'topleft' },
         
@@ -48,13 +48,14 @@ function createCombinedMapControl(map, labelLayers, countryOutline, compareMap) 
             // Create content container that can be hidden/shown
             const contentContainer = L.DomUtil.create('div', 'combined-control-content', container);
             
-            // Map Features Section
-            // const featuresTitle = L.DomUtil.create('div', 'combined-control-title', contentContainer);
-            // featuresTitle.innerHTML = 'Map Controls';
+            // Country Outlines Section
+            const outlineLabel = L.DomUtil.create('label', 'outline-label', contentContainer);
+            outlineLabel.textContent = 'Country Outline:';
             
-            // Add outline toggle button
-            const outlineButton = createButton('🗺️ Outline', contentContainer);
-            outlineButton.classList.add('active'); // Initially active
+            const outlineSelect = L.DomUtil.create('select', 'outline-select', contentContainer);
+            
+            // Add outline options
+            addOutlineOptions(outlineSelect);
             
             // Add ADM1 button
             const adm1Button = createButton('ADM1 Labels', contentContainer);
@@ -93,12 +94,26 @@ function createCombinedMapControl(map, labelLayers, countryOutline, compareMap) 
                     updateBasemap(compareMap, this.value);
                 });
             }
-            
+            // Add info panel toggle button
+
+            const analysisSectionLabel = L.DomUtil.create('label', 'basemap-label', contentContainer);
+analysisSectionLabel.textContent = 'Analysis Section:';
+const infoPanelButton = createButton('📊 Layer Info', contentContainer);
+
+// Set click handler for info panel button
+L.DomEvent.on(infoPanelButton, 'click', function(e) {
+    L.DomEvent.preventDefault(e);
+    L.DomEvent.stopPropagation(e);
+    // Access the global infoPanelManager
+    if (window.infoPanelManager) {
+        window.infoPanelManager.getInfoPanel().toggle();
+    }
+});
             // Set click handlers for features
-            L.DomEvent.on(outlineButton, 'click', function(e) {
+            L.DomEvent.on(outlineSelect, 'change', function(e) {
                 L.DomEvent.preventDefault(e);
                 L.DomEvent.stopPropagation(e);
-                toggleCountryOutline(outlineButton, map, countryOutline);
+                toggleCountryOutline(this.value, map, countryOutlines);
             });
             
             L.DomEvent.on(adm1Button, 'click', function(e) {
@@ -136,7 +151,32 @@ function createCombinedMapControl(map, labelLayers, countryOutline, compareMap) 
     });
     
     map.addControl(new CombinedControl());
+}
 
+/**
+ * Add outline options to select element
+ * @param {HTMLElement} select - Select element to populate
+ */
+function addOutlineOptions(select) {
+    const outlineOptions = [
+        { value: '', label: 'No Outline' },
+        { value: 'somalia', label: 'Somalia' },
+        { value: 'kenya', label: 'Kenya' },
+        { value: 'south_sudan', label: 'South Sudan' }
+    ];
+    
+    outlineOptions.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option.value;
+        optionElement.textContent = option.label;
+        
+        // Set Somalia as default
+        if (option.value === 'somalia') {
+            optionElement.selected = true;
+        }
+        
+        select.appendChild(optionElement);
+    });
 }
 
 /**
@@ -312,30 +352,61 @@ function generateLabelsFromData(layer, level, labelLayer) {
 }
 
 /**
- * Toggle country outline visibility
- * @param {HTMLElement} button - Button element that triggered the toggle
+ * Toggle country outline visibility with multiple country support
+ * @param {string} countryId - ID of the country outline to show
  * @param {Object} map - Leaflet map instance
- * @param {Object} countryOutline - Country outline layer
+ * @param {Object} countryOutlines - Object containing all country outline layers
  */
-function toggleCountryOutline(button, map, countryOutline) {
-    if (!countryOutline) return;
+function toggleCountryOutline(countryId, map, countryOutlines) {
+    // Remove all existing outlines from the map
+    Object.values(countryOutlines).forEach(outline => {
+        if (outline && map.hasLayer(outline)) {
+            map.removeLayer(outline);
+        }
+    });
     
-    const isActive = button.classList.contains('active');
-    
-    if (isActive) {
-        // Turn off outline
-        button.classList.remove('active');
-        button.style.backgroundColor = '#f8f8f8';
-        button.style.fontWeight = 'normal';
-        map.removeLayer(countryOutline);
-    } else {
-        // Turn on outline
-        button.classList.add('active');
-        button.style.backgroundColor = '#d4edda';
-        button.style.fontWeight = 'bold';
-        countryOutline.addTo(map);
+    // If a specific country is selected, add it to the map
+    if (countryId && countryOutlines[countryId]) {
+        if (!map.hasLayer(countryOutlines[countryId])) {
+            countryOutlines[countryId].addTo(map);
+        }
     }
 }
+
+/**
+ * Load a country outline from file
+ * @param {string} countryId - Country identifier
+ * @param {string} filepath - Path to the GeoJSON file
+ * @returns {Promise} - Promise resolving to the loaded layer
+ */
+export async function loadCountryOutline(countryId, filepath) {
+    try {
+        const response = await fetch(filepath);
+        const data = await response.json();
+        
+        const outlineLayer = L.geoJSON(data, {
+            style: {
+                color: "#3388ff",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0
+            }
+        });
+        
+        // Remove tooltips from outline features
+        outlineLayer.eachLayer(layer => {
+            layer.unbindTooltip();
+        });
+        
+        console.log(`Loaded ${countryId} outline from ${filepath}`);
+        return outlineLayer;
+    } catch (error) {
+        console.error(`Failed to load ${countryId} outline:`, error);
+        return null;
+    }
+}
+
+
 
 /**
  * Generate labels for admin boundaries - used when vector layers are loaded

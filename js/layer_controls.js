@@ -45,7 +45,7 @@ const layerConfig = {
     },
     streetNetworkLayer: {
         type: 'vector',
-        url: 'data/street_subset.geojson', // Update with your actual file path
+        url: 'data/street_subset.geojson',
         style: {
             color: "#3388ff",
             weight: 0.5,
@@ -64,10 +64,9 @@ const layerConfig = {
         opacityControl: 'pointOpacity',
         opacityDisplay: 'pointOpacityValue',
         selectorId: 'pointValueSelector',
-        // Add these new properties:
         colorRampSelector: 'pointColorRamp',
         colorRampPreview: 'pointColorPreview',
-        attributeSelector: 'pointValueSelector'  // Reuse existing selector
+        attributeSelector: 'pointValueSelector'
     },
     pointLayer2: {
         type: 'point',
@@ -75,91 +74,214 @@ const layerConfig = {
         opacityControl: 'pointOpacity2',
         opacityDisplay: 'pointOpacityValue2',
         selectorId: 'pointValueSelector2',
-        // Add these new properties:
         colorRampSelector: 'pointColorRamp2',
         colorRampPreview: 'pointColorPreview2',
-        attributeSelector: 'pointValueSelector2'  // Reuse existing selector
+        attributeSelector: 'pointValueSelector2'
     },
-    // Raster layers
+    // NDVI Change Layers
     tiffLayer1: {
         type: 'raster',
-        url: 'data/celltower.tif',
+        url: 'data/mean_ndvi_change_2015_to_2023.tif',
         opacityControl: 'tiffOpacity1',
         opacityDisplay: 'tiffOpacityValue1',
-        colorScale: 'cellTowerDensity',
-        legendTitle: 'Cell Tower Density',
-        legendDescription: 'Color gradient representing cell tower density.',
-        legendLabels: ['Low', 'Medium-Low', 'Medium', 'High', 'Very High']
+        colorScale: 'ndviChange',
+        legendTitle: 'NDVI Change (2015-2023)',
+        legendDescription: 'Long-term vegetation change showing overall trends over 8 years.',
+        legendLabels: ['Severe Decline', 'Moderate Decline', 'Stable', 'Moderate Increase', 'Strong Increase']
     },
     tiffLayer2: {
         type: 'raster',
-        url: 'data/pop.tif',
+        url: 'data/Somalia_NDVI_Change_2022_to_2023.tif',
         opacityControl: 'tiffOpacity2',
         opacityDisplay: 'tiffOpacityValue2',
-        colorScale: 'populationDensity',
-        legendTitle: 'Population Density',
-        legendDescription: 'White to Dark Gray gradient representing population density.',
-        legendLabels: ['Very Low', 'Low', 'Medium', 'High', 'Very High']
+        colorScale: 'ndviChange',
+        legendTitle: 'NDVI Change (2022-2023)',
+        legendDescription: 'Recent vegetation change reflecting latest environmental conditions.',
+        legendLabels: ['Severe Decline', 'Moderate Decline', 'Stable', 'Moderate Increase', 'Strong Increase']
     },
     tiffLayer3: {
         type: 'raster',
-        url: 'data/SV_May23_HR_IR_MIS_2021_agg.tif',
+        url: 'data/Somalia_NDVI_Change_2021_to_2022.tif',
         opacityControl: 'tiffOpacity3',
         opacityDisplay: 'tiffOpacityValue3',
-        colorScale: 'socialVulnerability',
-        legendTitle: 'Social Vulnerability',
-        legendDescription: 'Gradient representing social vulnerability index.',
-        legendLabels: ['Low', 'Medium-Low', 'Medium', 'High', 'Very High']
+        colorScale: 'ndviChange',
+        legendTitle: 'NDVI Change (2021-2022)',
+        legendDescription: 'Annual vegetation change during post-drought recovery period.',
+        legendLabels: ['Severe Decline', 'Moderate Decline', 'Stable', 'Moderate Increase', 'Strong Increase']
     },
     tiffLayer4: {
         type: 'raster',
-        url: 'data/rwi.tif',
+        url: 'data/Somalia_NDVI_Change_2020_to_2021.tif',
         opacityControl: 'tiffOpacity4',
         opacityDisplay: 'tiffOpacityValue4',
-        colorScale: 'relativeWealth',
-        legendTitle: 'Relative Wealth',
-        legendDescription: 'Gradient representing relative wealth index.',
-        legendLabels: ['Low', 'Medium-Low', 'Medium', 'High', 'Very High']
+        colorScale: 'ndviChange',
+        legendTitle: 'NDVI Change (2020-2021)',
+        legendDescription: 'Vegetation change during climate variability and locust impact period.',
+        legendLabels: ['Severe Decline', 'Moderate Decline', 'Stable', 'Moderate Increase', 'Strong Increase']
     },
     tiffLayer5: {
         type: 'raster',
-        url: 'data/ntl.tif',
+        url: 'data/Somalia_NDVI_Change_2019_to_2020.tif',
         opacityControl: 'tiffOpacity5',
         opacityDisplay: 'tiffOpacityValue5',
-        colorScale: 'nightlightintensity',
-        legendTitle: 'Nightlights',
-        legendDescription: 'Gradient representing nightlight intensity.',
-        legendLabels: ['Low', 'Medium-Low', 'Medium', 'High', 'Very High']
+        colorScale: 'ndviChange',
+        legendTitle: 'NDVI Change (2019-2020)',
+        legendDescription: 'Vegetation change during pre-drought conditions and early climate stress.',
+        legendLabels: ['Severe Decline', 'Moderate Decline', 'Stable', 'Moderate Increase', 'Strong Increase']
     },
     tiffLayer6: {
         type: 'raster',
-        url: 'data/ndvi2.tif',
+        url: 'data/Somalia_NDVI_Change_2018_to_2019.tif',
         opacityControl: 'tiffOpacity6',
         opacityDisplay: 'tiffOpacityValue6',
-        colorScale: 'ndvi',
-        legendTitle: 'Vegetation Health',
-        legendDescription: 'Gradient representing Normalized Difference Vegetation Index.',
-        legendLabels: ['Low', 'Medium-Low', 'Medium', 'High', 'Very High']
+        colorScale: 'ndviChange',
+        legendTitle: 'NDVI Change (2018-2019)',
+        legendDescription: 'Vegetation change during moderate climate conditions.',
+        legendLabels: ['Severe Decline', 'Moderate Decline', 'Stable', 'Moderate Increase', 'Strong Increase']
     },
     tiffLayer7: {
         type: 'raster',
-        url: 'data/conflict.tif',
+        url: 'data/Somalia_NDVI_Change_2017_to_2018.tif',
         opacityControl: 'tiffOpacity7',
         opacityDisplay: 'tiffOpacityValue7',
-        colorScale: 'conflict',
-        legendTitle: 'Conflicts (ACLED)',
-        legendDescription: 'Gradient representing number of conflict events in the past 15 years.',
-        legendLabels: ['Low', 'Medium-Low', 'Medium', 'High', 'Very High']
+        colorScale: 'ndviChange',
+        legendTitle: 'NDVI Change (2017-2018)',
+        legendDescription: 'Vegetation change during post-famine recovery period.',
+        legendLabels: ['Severe Decline', 'Moderate Decline', 'Stable', 'Moderate Increase', 'Strong Increase']
     },
     tiffLayer8: {
         type: 'raster',
-        url: 'data/temp_compr.tif',
+        url: 'data/Somalia_NDVI_Change_2016_to_2017.tif',
         opacityControl: 'tiffOpacity8',
         opacityDisplay: 'tiffOpacityValue8',
-        colorScale: 'temp',
-        legendTitle: 'Conflicts (ACLED)',
-        legendDescription: 'Gradient representing number of conflict events in the past 15 years.',
-        legendLabels: ['Low', 'Medium-Low', 'Medium', 'High', 'Very High']
+        colorScale: 'ndviChange',
+        legendTitle: 'NDVI Change (2016-2017)',
+        legendDescription: 'Vegetation change during severe drought and famine period.',
+        legendLabels: ['Severe Decline', 'Moderate Decline', 'Stable', 'Moderate Increase', 'Strong Increase']
+    },
+    tiffLayer9: {
+        type: 'raster',
+        url: 'data/Somalia_NDVI_Change_2015_to_2016.tif',
+        opacityControl: 'tiffOpacity9',
+        opacityDisplay: 'tiffOpacityValue9',
+        colorScale: 'ndviChange',
+        legendTitle: 'NDVI Change (2015-2016)',
+        legendDescription: 'Vegetation change during baseline period before major climate events.',
+        legendLabels: ['Severe Decline', 'Moderate Decline', 'Stable', 'Moderate Increase', 'Strong Increase']
+    },
+    // Service Coverage
+    tiffLayer10: {
+        type: 'raster',
+        url: 'data/som_service_area_2.tif',
+        opacityControl: 'tiffOpacity10',
+        opacityDisplay: 'tiffOpacityValue10',
+        colorScale: 'serviceAccess',
+        legendTitle: 'Service Coverage Areas',
+        legendDescription: 'Geographic coverage of essential services and administrative reach.',
+        legendLabels: ['No Coverage', 'Limited', 'Moderate', 'Good', 'Comprehensive']
+    },
+    // Nighttime Lights
+    tiffLayer11: {
+        type: 'raster',
+        url: 'data/VNP46A2_2024_Somalia.tif',
+        opacityControl: 'tiffOpacity11',
+        opacityDisplay: 'tiffOpacityValue11',
+        colorScale: 'nightlights',
+        legendTitle: 'Nighttime Lights (2024)',
+        legendDescription: 'Current economic activity and electrification levels from satellite imagery.',
+        legendLabels: ['No Activity', 'Low', 'Moderate', 'High', 'Very High']
+    },
+    // Environmental Layers
+    tiffLayer12: {
+        type: 'raster',
+        url: 'data/elevation.tif',
+        opacityControl: 'tiffOpacity12',
+        opacityDisplay: 'tiffOpacityValue12',
+        colorScale: 'elevation',
+        legendTitle: 'Elevation',
+        legendDescription: 'Topographic elevation above sea level affecting accessibility and climate.',
+        legendLabels: ['Sea Level', 'Low', 'Moderate', 'High', 'Very High']
+    },
+    tiffLayer13: {
+        type: 'raster',
+        url: 'data/soil_moisture.tif',
+        opacityControl: 'tiffOpacity13',
+        opacityDisplay: 'tiffOpacityValue13',
+        colorScale: 'soilMoisture',
+        legendTitle: 'Soil Moisture',
+        legendDescription: 'Agricultural productivity indicator and drought monitoring metric.',
+        legendLabels: ['Very Dry', 'Dry', 'Moderate', 'Moist', 'Very Moist']
+    },
+    tiffLayer14: {
+        type: 'raster',
+        url: 'data/temperature.tif',
+        opacityControl: 'tiffOpacity14',
+        opacityDisplay: 'tiffOpacityValue14',
+        colorScale: 'temperature',
+        legendTitle: 'Temperature',
+        legendDescription: 'Average temperature patterns affecting agriculture and livelihood conditions.',
+        legendLabels: ['Cool', 'Moderate', 'Warm', 'Hot', 'Very Hot']
+    },
+    tiffLayer15: {
+        type: 'raster',
+        url: 'data/rainfall.tif',
+        opacityControl: 'tiffOpacity15',
+        opacityDisplay: 'tiffOpacityValue15',
+        colorScale: 'rainfall',
+        legendTitle: 'Rainfall',
+        legendDescription: 'Precipitation patterns critical for agriculture and water security.',
+        legendLabels: ['Very Low', 'Low', 'Moderate', 'High', 'Very High']
+    },
+    // Infrastructure & Socioeconomic
+    tiffLayer16: {
+        type: 'raster',
+        url: 'data/population.tif',
+        opacityControl: 'tiffOpacity16',
+        opacityDisplay: 'tiffOpacityValue16',
+        colorScale: 'populationDensity',
+        legendTitle: 'Population Density',
+        legendDescription: 'Distribution of people across Somalia for planning and resource allocation.',
+        legendLabels: ['Very Low', 'Low', 'Moderate', 'High', 'Very High']
+    },
+    tiffLayer17: {
+        type: 'raster',
+        url: 'data/roads.tif',
+        opacityControl: 'tiffOpacity17',
+        opacityDisplay: 'tiffOpacityValue17',
+        colorScale: 'roadAccess',
+        legendTitle: 'Road Network',
+        legendDescription: 'Transportation infrastructure affecting market access and mobility.',
+        legendLabels: ['No Access', 'Poor', 'Limited', 'Good', 'Excellent']
+    },
+    tiffLayer18: {
+        type: 'raster',
+        url: 'data/education.tif',
+        opacityControl: 'tiffOpacity18',
+        opacityDisplay: 'tiffOpacityValue18',
+        colorScale: 'educationAccess',
+        legendTitle: 'Education Access',
+        legendDescription: 'Proximity and availability of educational facilities and services.',
+        legendLabels: ['No Access', 'Very Limited', 'Limited', 'Good', 'Excellent']
+    },
+    tiffLayer19: {
+        type: 'raster',
+        url: 'data/health.tif',
+        opacityControl: 'tiffOpacity19',
+        opacityDisplay: 'tiffOpacityValue19',
+        colorScale: 'healthAccess',
+        legendTitle: 'Health Facility Access',
+        legendDescription: 'Accessibility to healthcare services and medical facilities.',
+        legendLabels: ['No Access', 'Very Limited', 'Limited', 'Good', 'Excellent']
+    },
+    tiffLayer20: {
+        type: 'raster',
+        url: 'data/celltower.tif',
+        opacityControl: 'tiffOpacity20',
+        opacityDisplay: 'tiffOpacityValue20',
+        colorScale: 'cellTowerDensity',
+        legendTitle: 'Cell Tower Coverage',
+        legendDescription: 'Mobile network infrastructure and communication connectivity.',
+        legendLabels: ['No Coverage', 'Poor', 'Limited', 'Good', 'Excellent']
     }
 };
 
@@ -196,6 +318,7 @@ export function setupLayerControls(map, layers, colorScales, updateLegend, hideL
     // Setup point layer property selector
     setupPointLayerSelector(layers);
 }
+
 /**
  * Setup point layer color ramp controls
  */
@@ -513,4 +636,3 @@ function updateLayerOpacity(layerType, layerId, layers, opacity, updateLegend) {
                 break;
     }
 }
-

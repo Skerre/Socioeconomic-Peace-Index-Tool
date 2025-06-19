@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Tool for Socio-Economic-Peace-Index</title>
+    <title>Online Tool for Socio Economic Peace Index Tool</title>
     
     <!-- CSS styles -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/info_panel.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
   crossorigin=""/>
@@ -25,11 +26,11 @@
 <body>
     <!-- Top Navigation Bar -->
     <nav id="navbar">
-        <!-- <div class="navbar-logo navbar-logo-left">
-            <img src="assets/icpsd_logo.png" alt="SDG AI Logo" class="logo-image">
-        </div> -->
+        <div class="navbar-logo navbar-logo-left">
+            <img src="assets/pigeon2.png" alt="SDG AI Logo" class="logo-image">
+        </div>
             <div class="navbar-logo navbar-logo-left">
-        <h1 class="tool-title">Socio-Economic-Peace-Index</h1>
+        <h1 class="tool-title">Socio Economic Peace Index Tool</h1>
     </div>
         
         <ul class="navbar-menu">
@@ -120,34 +121,10 @@
                             <span id="opacityValueId">100%</span>
                         </div>
                     </template>
-                   <!-- Social Vulnerability -->
-                    <div class="layer-checkbox">
-                        <input type="checkbox" id="tiffLayer3">
-                        <label for="tiffLayer3">Social Vulnerability</label>
-                    </div>
-                    <div class="opacity-control">
-                        <label for="tiffOpacity3">Opacity</label>
-                        <input type="range" id="tiffOpacity3" min="0" max="1" step="0.1" value="1">
-                        <span id="tiffOpacityValue3">100%</span>
-                    </div>
-                    <!-- Street Network -->
-                    <div class="layer-checkbox">
-                        
-                        <input type="checkbox" id="streetNetworkLayer">
-                        <label for="streetNetworkLayer">Street Network</label>
-                    </div>
-                    <div class="opacity-control">
-                        <label for="streetNetworkOpacityValue">Opacity</label>
-                        <input type="range" id="streetNetworkOpacityValue" min="0" max="1" step="0.1" value="1">
-                        <span id="streetNetworkOpacity">100%</span>
-                        <!-- <label>Opacity: <span id="streetNetworkOpacityValue">50%</span></label> -->
-                        <!-- <input type="range" id="streetNetworkOpacity" min="0" max="1" step="0.1" value="0.5"> -->
-                    </div>
-                
-                    <!-- Cell Tower Density -->
+                    <!-- NDVI Change Layers -->
                     <div class="layer-checkbox">
                         <input type="checkbox" id="tiffLayer1">
-                        <label for="tiffLayer1">Cell Tower Density</label>
+                        <label for="tiffLayer1">NDVI Change (2015-2023)</label>
                     </div>
                     <div class="opacity-control">
                         <label for="tiffOpacity1">Opacity</label>
@@ -155,66 +132,199 @@
                         <span id="tiffOpacityValue1">100%</span>
                     </div>
                     
-                    <!-- Population Density -->
                     <div class="layer-checkbox">
                         <input type="checkbox" id="tiffLayer2">
-                        <label for="tiffLayer2">Population Density</label>
+                        <label for="tiffLayer2">NDVI Change (2022-2023)</label>
                     </div>
                     <div class="opacity-control">
                         <label for="tiffOpacity2">Opacity</label>
                         <input type="range" id="tiffOpacity2" min="0" max="1" step="0.1" value="1">
                         <span id="tiffOpacityValue2">100%</span>
                     </div>
-                    <!-- Relative Wealth -->
+                    
+                    <div class="layer-checkbox">
+                        <input type="checkbox" id="tiffLayer3">
+                        <label for="tiffLayer3">NDVI Change (2021-2022)</label>
+                    </div>
+                    <div class="opacity-control">
+                        <label for="tiffOpacity3">Opacity</label>
+                        <input type="range" id="tiffOpacity3" min="0" max="1" step="0.1" value="1">
+                        <span id="tiffOpacityValue3">100%</span>
+                    </div>
+                    
                     <div class="layer-checkbox">
                         <input type="checkbox" id="tiffLayer4">
-                        <label for="tiffLayer4">Relative Wealth</label>
+                        <label for="tiffLayer4">NDVI Change (2020-2021)</label>
                     </div>
                     <div class="opacity-control">
                         <label for="tiffOpacity4">Opacity</label>
                         <input type="range" id="tiffOpacity4" min="0" max="1" step="0.1" value="1">
                         <span id="tiffOpacityValue4">100%</span>
-                    </div>                    
-                    <!-- Nightlight Intensity -->
+                    </div>
+                    
                     <div class="layer-checkbox">
                         <input type="checkbox" id="tiffLayer5">
-                        <label for="tiffLayer5">Nightlight Intensity</label>
+                        <label for="tiffLayer5">NDVI Change (2019-2020)</label>
                     </div>
                     <div class="opacity-control">
                         <label for="tiffOpacity5">Opacity</label>
                         <input type="range" id="tiffOpacity5" min="0" max="1" step="0.1" value="1">
                         <span id="tiffOpacityValue5">100%</span>
-                    </div>       
-                    <!-- NDVI -->
+                    </div>
+                    
                     <div class="layer-checkbox">
                         <input type="checkbox" id="tiffLayer6">
-                        <label for="tiffLayer6">NDVI</label>
+                        <label for="tiffLayer6">NDVI Change (2018-2019)</label>
                     </div>
                     <div class="opacity-control">
                         <label for="tiffOpacity6">Opacity</label>
                         <input type="range" id="tiffOpacity6" min="0" max="1" step="0.1" value="1">
                         <span id="tiffOpacityValue6">100%</span>
-                    </div>                     
-                    <!-- Conflicts -->
+                    </div>
+                    
                     <div class="layer-checkbox">
                         <input type="checkbox" id="tiffLayer7">
-                        <label for="tiffLayer7">Conflicts</label>
+                        <label for="tiffLayer7">NDVI Change (2017-2018)</label>
                     </div>
                     <div class="opacity-control">
                         <label for="tiffOpacity7">Opacity</label>
                         <input type="range" id="tiffOpacity7" min="0" max="1" step="0.1" value="1">
                         <span id="tiffOpacityValue7">100%</span>
-                    </div>  
-                    <!-- Temp -->
+                    </div>
+                    
                     <div class="layer-checkbox">
                         <input type="checkbox" id="tiffLayer8">
-                        <label for="tiffLayer8">Temperature</label>
+                        <label for="tiffLayer8">NDVI Change (2016-2017)</label>
                     </div>
                     <div class="opacity-control">
                         <label for="tiffOpacity8">Opacity</label>
                         <input type="range" id="tiffOpacity8" min="0" max="1" step="0.1" value="1">
                         <span id="tiffOpacityValue8">100%</span>
-                    </div>  
+                    </div>
+                    
+                    <div class="layer-checkbox">
+                        <input type="checkbox" id="tiffLayer9">
+                        <label for="tiffLayer9">NDVI Change (2015-2016)</label>
+                    </div>
+                    <div class="opacity-control">
+                        <label for="tiffOpacity9">Opacity</label>
+                        <input type="range" id="tiffOpacity9" min="0" max="1" step="0.1" value="1">
+                        <span id="tiffOpacityValue9">100%</span>
+                    </div>
+                    
+                    <!-- Service Areas -->
+                    <div class="layer-checkbox">
+                        <input type="checkbox" id="tiffLayer10">
+                        <label for="tiffLayer10">Service Coverage Areas</label>
+                    </div>
+                    <div class="opacity-control">
+                        <label for="tiffOpacity10">Opacity</label>
+                        <input type="range" id="tiffOpacity10" min="0" max="1" step="0.1" value="1">
+                        <span id="tiffOpacityValue10">100%</span>
+                    </div>
+                    
+                    <!-- Nighttime Lights -->
+                    <div class="layer-checkbox">
+                        <input type="checkbox" id="tiffLayer11">
+                        <label for="tiffLayer11">Nighttime Lights (2024)</label>
+                    </div>
+                    <div class="opacity-control">
+                        <label for="tiffOpacity11">Opacity</label>
+                        <input type="range" id="tiffOpacity11" min="0" max="1" step="0.1" value="1">
+                        <span id="tiffOpacityValue11">100%</span>
+                    </div>
+                    
+                    <!-- Environmental Layers -->
+                    <div class="layer-checkbox">
+                        <input type="checkbox" id="tiffLayer12">
+                        <label for="tiffLayer12">Elevation</label>
+                    </div>
+                    <div class="opacity-control">
+                        <label for="tiffOpacity12">Opacity</label>
+                        <input type="range" id="tiffOpacity12" min="0" max="1" step="0.1" value="1">
+                        <span id="tiffOpacityValue12">100%</span>
+                    </div>
+                    
+                    <div class="layer-checkbox">
+                        <input type="checkbox" id="tiffLayer13">
+                        <label for="tiffLayer13">Soil Moisture</label>
+                    </div>
+                    <div class="opacity-control">
+                        <label for="tiffOpacity13">Opacity</label>
+                        <input type="range" id="tiffOpacity13" min="0" max="1" step="0.1" value="1">
+                        <span id="tiffOpacityValue13">100%</span>
+                    </div>
+                    
+                    <div class="layer-checkbox">
+                        <input type="checkbox" id="tiffLayer14">
+                        <label for="tiffLayer14">Temperature</label>
+                    </div>
+                    <div class="opacity-control">
+                        <label for="tiffOpacity14">Opacity</label>
+                        <input type="range" id="tiffOpacity14" min="0" max="1" step="0.1" value="1">
+                        <span id="tiffOpacityValue14">100%</span>
+                    </div>
+                    
+                    <div class="layer-checkbox">
+                        <input type="checkbox" id="tiffLayer15">
+                        <label for="tiffLayer15">Rainfall</label>
+                    </div>
+                    <div class="opacity-control">
+                        <label for="tiffOpacity15">Opacity</label>
+                        <input type="range" id="tiffOpacity15" min="0" max="1" step="0.1" value="1">
+                        <span id="tiffOpacityValue15">100%</span>
+                    </div>
+                    
+                    <!-- Infrastructure & Socioeconomic -->
+                    <div class="layer-checkbox">
+                        <input type="checkbox" id="tiffLayer16">
+                        <label for="tiffLayer16">Population Density</label>
+                    </div>
+                    <div class="opacity-control">
+                        <label for="tiffOpacity16">Opacity</label>
+                        <input type="range" id="tiffOpacity16" min="0" max="1" step="0.1" value="1">
+                        <span id="tiffOpacityValue16">100%</span>
+                    </div>
+                    
+                    <div class="layer-checkbox">
+                        <input type="checkbox" id="tiffLayer17">
+                        <label for="tiffLayer17">Road Network</label>
+                    </div>
+                    <div class="opacity-control">
+                        <label for="tiffOpacity17">Opacity</label>
+                        <input type="range" id="tiffOpacity17" min="0" max="1" step="0.1" value="1">
+                        <span id="tiffOpacityValue17">100%</span>
+                    </div>
+                    
+                    <div class="layer-checkbox">
+                        <input type="checkbox" id="tiffLayer18">
+                        <label for="tiffLayer18">Education Access</label>
+                    </div>
+                    <div class="opacity-control">
+                        <label for="tiffOpacity18">Opacity</label>
+                        <input type="range" id="tiffOpacity18" min="0" max="1" step="0.1" value="1">
+                        <span id="tiffOpacityValue18">100%</span>
+                    </div>
+                    
+                    <div class="layer-checkbox">
+                        <input type="checkbox" id="tiffLayer19">
+                        <label for="tiffLayer19">Health Facility Access</label>
+                    </div>
+                    <div class="opacity-control">
+                        <label for="tiffOpacity19">Opacity</label>
+                        <input type="range" id="tiffOpacity19" min="0" max="1" step="0.1" value="1">
+                        <span id="tiffOpacityValue19">100%</span>
+                    </div>
+                    
+                    <div class="layer-checkbox">
+                        <input type="checkbox" id="tiffLayer20">
+                        <label for="tiffLayer20">Cell Tower Coverage</label>
+                    </div>
+                    <div class="opacity-control">
+                        <label for="tiffOpacity20">Opacity</label>
+                        <input type="range" id="tiffOpacity20" min="0" max="1" step="0.1" value="1">
+                        <span id="tiffOpacityValue20">100%</span>
+                    </div>
                 </div>
             </div>
 
@@ -281,6 +391,7 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet.sync@0.2.4/L.Map.Sync.min.js"></script>
     
     <!-- Application scripts -->
+     
     <script type="module" src="js/split-map.js"></script>
     <script type="module" src="js/color_scales.js"></script>
     <script type="module" src="js/color_ramp_selector.js"></script>

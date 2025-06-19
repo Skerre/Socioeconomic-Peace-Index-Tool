@@ -1,0 +1,445 @@
+/* info_panel.css - Styles for the Info Panel module */
+
+/* Main Panel Container */
+
+/* Panel Header */
+.info-panel-header {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    color: white;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    border-radius: 8px 8px 0 0;
+    user-select: none;
+}
+
+.info-panel-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.info-panel-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.info-panel-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.info-panel-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Panel Content */
+.info-panel-content {
+    max-height: calc(60vh - 60px);
+    overflow-y: auto;
+    background: white;
+    border-radius: 0 0 8px 8px;
+}
+
+.info-panel-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.info-panel-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.info-panel-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.info-panel-content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Panel Sections */
+.info-panel-section {
+    border-bottom: 1px solid #e9ecef;
+    padding: 16px;
+}
+
+.info-panel-section:last-child {
+    border-bottom: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.section-header h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #495057;
+}
+
+.layer-count {
+    font-size: 12px;
+    color: #6c757d;
+    background: #f8f9fa;
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+/* Dropdown functionality */
+.dropdown-header {
+    cursor: pointer;
+    padding: 4px 0;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.dropdown-header:hover {
+    background-color: #f8f9fa;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    font-size: 12px;
+    color: #6c757d;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.dropdown-content {
+    margin-top: 8px;
+    display: block;
+}
+
+/* Layer Items */
+.layers-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.layer-item {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+}
+
+.layer-item:hover {
+    background: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.layer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.layer-name {
+    font-weight: 600;
+    color: #495057;
+}
+
+.layer-type {
+    background: #6c757d;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.layer-details {
+    font-size: 12px;
+    color: #6c757d;
+    line-height: 1.3;
+}
+
+/* Analysis Tools */
+.analysis-tool {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 8px;
+}
+
+.analysis-tool h5 {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    color: #495057;
+}
+
+.analysis-tool p {
+    margin: 0 0 8px 0;
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.run-analysis-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.run-analysis-btn:hover {
+    background: #0056b3;
+}
+
+.run-analysis-btn:active {
+    background: #004085;
+}
+
+/* Analysis Results */
+.results-content {
+    min-height: 60px;
+}
+
+.analysis-result {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 8px;
+}
+
+.analysis-result h5 {
+    margin: 0 0 8px 0;
+    color: #155724;
+    font-size: 14px;
+}
+
+.result-content {
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.result-timestamp {
+    font-size: 11px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.analysis-error {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    padding: 12px;
+    color: #721c24;
+}
+
+.analysis-error h5 {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+}
+
+/* Loading States */
+.analysis-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.loading-spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Summary and Analysis Content */
+.summary-overview {
+    background: #e7f3ff;
+    border-left: 4px solid #007bff;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+}
+
+.summary-overview p {
+    margin: 4px 0;
+    font-size: 13px;
+}
+
+.summary-details h6 {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    color: #495057;
+}
+
+.summary-item,
+.spatial-item,
+.comparison-item {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+
+.comparison-note {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 4px;
+    padding: 8px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #856404;
+}
+
+/* Messages */
+.no-layers-message,
+.no-results-message {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .info-panel-container {
+        width: calc(100vw - 40px) !important;
+        max-width: 350px;
+    }
+    
+    .info-panel-title {
+        font-size: 14px;
+    }
+    
+    .info-panel-section {
+        padding: 12px;
+    }
+    
+    .layer-item,
+    .analysis-tool {
+        padding: 8px;
+    }
+    
+    .section-header h4 {
+        font-size: 14px;
+    }
+}
+
+/* Animation classes */
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-down {
+    animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        max-height: 0;
+        opacity: 0;
+    }
+    to {
+        max-height: 200px;
+        opacity: 1;
+    }
+}
+
+/* Utility classes */
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: #6c757d;
+}
+
+.mb-2 {
+    margin-bottom: 8px;
+}
+
+.mb-3 {
+    margin-bottom: 12px;
+}
+
+.font-weight-bold {
+    font-weight: 600;
+}
+
+/* Info Panel Toggle Button Styles */
+.info-toggle-control {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.info-toggle-button {
+    display: block;
+    text-align: center;
+    padding: 8px;
+    font-size: 18px;
+    color: #333;
+    background-color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #333;
+}
+.info-toggle-button:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+    transform: scale(1.1);
+}
+
+.info-toggle-button:active {
+    background-color: #e9ecef;
+}
